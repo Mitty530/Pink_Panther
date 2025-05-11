@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pink Panther Technologies - Quantitative trading solutions">
+    <title>Pink Panther Technologies - Quantitative Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+        }
+
+        html {
+             scroll-behavior: smooth; /* Enable smooth scrolling globally */
+             scroll-padding-top: 70px; /* Offset for fixed header */
+        }
+
+
+        body {
+            line-height: 1.6; /* Improve readability */
+            color: #333; /* Default text color */
+            background-color: #fff; /* Default background */
+        }
+
+        .container {
+            max-width: 1200px; /* Limit content width */
+            margin: 0 auto; /* Center container */
+            padding: 0 5%; /* Add horizontal padding */
+        }
+
+        /* Header Styles */
+        .header {
+            padding: 1rem 5%; /* Header padding */
+            background: #fff; /* White background */
+            border-bottom: 1px solid #eee; /* Subtle bottom border */
+            position: fixed; /* Keep header fixed at the top */
+            width: 100%;
+            top: 0;
+            z-index: 1000; /* Ensure header is above other content */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space out logo and nav */
+            align-items: center; /* Vertically align items */
+            min-height: 65px; /* Ensure minimum header height */
+        }
+
+        .logo {
+            font-size: 1.8rem; /* Adjusted font size to match h2 */
+            font-weight: 700; /* Bold font weight */
+            color: #000; /* Black color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .nav {
+            display: flex; /* Use flexbox for nav items */
+            gap: 2rem; /* Space between nav links */
+            align-items: center; /* Align nav items vertically */
+        }
+
+        .nav a {
+            text-decoration: none; /* Remove underline from links */
+            color: #333; /* Standard link color */
+            font-weight: 500; /* Medium font weight */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+            line-height: normal; /* Ensure consistent line height */
+            padding: 0.2rem 0; /* Add slight vertical padding for better alignment feel */
+        }
+        .nav a:not(.login-btn):hover { /* Apply hover only to non-button links */
+            color: #0056b3; /* Slightly darker blue on hover */
+        }
+
+        /* Client Login Button Style */
+        .nav a.login-btn {
+            padding: 0.6rem 1.5rem; /* Padding */
+            border: 1px solid #ddd; /* Light grey border like the image */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #fff; /* White background like the image */
+            color: #333; /* Dark text color like the image */
+            font-weight: 500;
+            box-shadow: none; /* Remove previous shadow */
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+        }
+        .nav a.login-btn:hover {
+            background-color: #f8f8f8; /* Slightly grey background on hover */
+            border-color: #ccc; /* Slightly darker border on hover */
+            color: #000; /* Darker text on hover */
+            transform: none; /* Remove lift effect */
+            box-shadow: none; /* Ensure no shadow on hover */
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            padding: 5rem 5% 4rem; /* Reduced top padding */
+            text-align: center; /* Center align text */
+            margin-top: 65px; /* Adjust margin to match header min-height */
+            background-color: #f5e6e0; /* Light pink/beige from image */
+        }
+
+        .hero p {
+            font-size: 1.6rem; /* Increased font size for better readability */
+            color: #333; /* Slightly darker text for better contrast */
+            max-width: 900px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the text */
+            font-weight: 500; /* Medium weight for better visibility */
+            line-height: 1.4; /* Improved line height for readability */
+        }
+
+        /* === Layout Styles === */
+        .page-body {
+            display: flex; /* Use flex instead of flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding: 2rem 5% 0; /* Add padding */
+            margin-top: 2%;
+        }
+
+        .left-content {
+            width: auto; /* Let content determine width */
+            max-width: 450px; /* Limit maximum width */
+            margin: 0 auto; /* Center the content */
+        }
+
+        /* === End of Layout Styles === */
+
+
+        /* General Section Styles */
+        .section {
+            padding: 2rem 0; /* Reduced vertical padding for sections within column */
+             border-top: 1px solid #eee; /* Separator line */
+        }
+
+        /* Remove top border for the first section in the left column */
+        .left-content .section:first-child {
+             border-top: none;
+             padding-top: 0; /* Remove extra top padding */
+        }
+
+
+        .section h2 {
+            font-size: 1.8rem; /* Section heading size */
+            margin-bottom: 1.5rem; /* Reduced space below heading */
+            color: #000; /* Black color */
+            font-weight: 600; /* Semi-bold weight */
+            /* text-align is handled below */
+        }
+
+        /* Align ALL text left within the left column */
+        .left-content .section h2,
+        .left-content .section p,
+        .left-content .section div:not(.card) { /* Exclude card centering */
+             text-align: center;
+        }
+
+
+        /* Card Styles (used in Login) */
+        .card {
+            padding: 2rem; /* Padding inside cards */
+            border: 1px solid #eee; /* Light border */
+            border-radius: 8px; /* More rounded corners */
+            background-color: #fff; /* White background for cards */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+            max-width: 500px; /* Keep the card width consistent */
+            width: 100%; /* Ensure it doesn't exceed the container */
+        }
+
+        .card h3 { /* Style not currently used but kept */
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #000;
+        }
+        .card p { /* Style not currently used but kept */
+            color: #555;
+        }
+
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem; /* Space between form fields */
+        }
+
+        .form-input {
+            width: 100%; /* Full width */
+            padding: 0.8rem 1rem; /* Padding */
+            border: 1px solid #ddd; /* Border */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 1rem; /* Font size */
+        }
+        .form-input:focus {
+             border-color: #007bff; /* Highlight border on focus */
+             outline: none; /* Remove default outline */
+             box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add subtle glow */
+        }
+
+        .form-button {
+            width: 100%; /* Full width */
+            padding: 1rem; /* Padding */
+            background: #000; /* Black background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease; /* Smooth background transition */
+        }
+        .form-button:hover {
+             background-color: #333; /* Darker background on hover */
+        }
+
+        /* Login Card Specific Adjustments */
+        #login .card {
+             max-width: 450px; /* Allow slightly wider card */
+             margin: 1.5rem 0 0 0; /* Align left, remove auto margin */
+        }
+
+
+        /* Footer Styles */
+        footer {
+            padding: 3rem 5%; /* Footer padding */
+            border-top: 1px solid #eee; /* Separator line */
+            margin-top: 2rem; /* Space above footer */
+            background-color: #f8f9fa; /* Light background */
+        }
+
+        .footer-links {
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center links */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 2rem; /* Space between links */
+            margin-bottom: 1.5rem; /* Space below links */
+        }
+
+        .footer-links a {
+            color: #666; /* Link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease;
+        }
+         .footer-links a:hover {
+             color: #000; /* Darken link on hover */
+         }
+
+        footer p {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design Adjustments */
+
+        /* Apply column layout on larger screens */
+        @media (min-width: 769px) {
+            .left-content {
+                 width: 45%; /* Explicitly set width */
+                 padding-right: 2rem; /* Add spacing between columns if right exists */
+                 /* === DEBUGGING COLOR === */
+                 /* background-color: rgba(0, 255, 0, 0.1); / / Light green background for left-content on wide screens */
+            }
+             /* Example: Add a right column style if needed */
+             /*
+             .right-content {
+                 width: 50%;
+                 background-color: rgba(255, 255, 0, 0.1); /* Light yellow for right column */
+             }
+             */
+        }
+
+
+        @media (max-width: 768px) {
+             /* Adjust header for smaller screens */
+            .header {
+                padding: 0.8rem 5%;
+                flex-direction: column; /* Stack logo and nav */
+                align-items: flex-start; /* Align items to the start */
+                position: static; /* Remove fixed positioning on mobile */
+                min-height: auto; /* Reset min height */
+            }
+            .nav {
+                margin-top: 1rem; /* Add space below logo */
+                gap: 1rem; /* Reduce gap between nav items */
+                flex-wrap: wrap; /* Allow nav items to wrap */
+                align-items: center; /* Center items when wrapped */
+                width: 100%; /* Take full width */
+                 justify-content: flex-start; /* Align items to start */
+            }
+            .nav a.login-btn {
+                padding: 0.5rem 1.2rem; /* Adjust button padding */
+                margin-left: auto; /* Push login button to the right if space allows */
+            }
+
+
+            /* Adjust hero section padding and text size */
+            .hero {
+                padding: 4rem 5% 3rem; /* Adjust padding */
+                 margin-top: 0; /* Remove margin-top since header is static */
+            }
+            .hero p {
+                font-size: 1.4rem; /* Slightly smaller but still readable */
+                padding: 0 10px; /* Add some padding on smaller screens */
+            }
+
+            /* Adjust section padding and heading size */
+            .section {
+                padding: 2.5rem 0; /* Adjust vertical padding */
+            }
+            .section h2 {
+                font-size: 1.6rem;
+            }
+             /* Stack columns */
+             .page-body {
+                 flex-direction: column;
+                 padding: 0 2%; /* Reset padding for column layout */
+                 gap: 0; /* Remove gap when stacked */
+             }
+             .left-content {
+                 width: 100%; /* Full width */
+                 padding-right: 0; /* Remove right padding */
+             }
+             .left-content .section {
+                 border-top: 1px solid #eee; /* Re-add border top */
+                 padding-top: 2.5rem; /* Reset padding */
+             }
+             .left-content .section:first-child {
+                 border-top: none; /* Ensure first still has no top border */
+             }
+             /* Ensure text aligns left on mobile too */
+             .left-content .section h2,
+             .left-content .section p,
+             .left-content .section div:not(.card) {
+                  text-align: left;
+             }
+
+
+             /* Adjust footer */
+             .footer-links {
+                gap: 1rem; /* Reduce gap */
+             }
+             footer {
+                 padding: 2rem 5%;
+             }
+             html {
+                scroll-padding-top: 0; /* Remove scroll padding on mobile */
+             }
+        }
+
+         @media (max-width: 480px) {
+            /* Further adjustments for very small screens */
+            .nav {
+                justify-content: center; /* Center nav items */
+                gap: 0.8rem; /* Further reduce gap */
+            }
+             .nav a {
+                font-size: 0.9rem; /* Slightly smaller nav text */
+             }
+             .nav a.login-btn {
+                 padding: 0.4rem 1rem;
+                 margin-left: 0; /* Remove margin push */
+             }
+
+            .logo {
+                font-size: 1.6rem; /* Adjust logo size */
+                margin-bottom: 0.5rem; /* Add space below logo */
+                width: 100%; /* Make logo take full width */
+                text-align: center; /* Center logo text */
+            }
+            .header {
+                align-items: center; /* Center items */
+            }
+
+            .hero p {
+                font-size: 1.2rem; /* Still readable on very small screens */
+            }
+            .section h2 {
+                font-size: 1.4rem;
+            }
+            .card {
+                padding: 1.5rem; /* Smaller card padding */
+            }
+            .form-button {
+                padding: 0.8rem;
+            }
+            #login .card {
+                 max-width: 100%; /* Allow full width on small screens */
+                 margin-left: 0; /* Ensure left align */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Pink Panther</a>
+        <nav class="nav">
+            <a href="index.html#about">About</a>
+            <a href="index.html#capabilities">Capabilities</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="client_login.html" class="login-btn">Client Login</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <p>Pink Panther Technologies is a Quantitative Platform for the Global Financial Markets. We are producing quantitative systems enabling consistent and exceptional returns.</p>
+        </div>
+    </section>
+
+    <div class="page-body">
+        <div class="left-content">
+            <section class="section" id="login">
+                <h2>Client Portal Login</h2>
+                <div class="card">
+                    <form>
+                        <div class="form-group">
+                            <label for="username" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Username</label>
+                            <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+                            <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="form-button">Login</button>
+                         <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem;"><a href="#forgot-password" style="color: #666; text-decoration: none;">Forgot Password?</a></p>
+                    </form>
+                </div>
+            </section>
+        </div> </div> <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html#commitments">Our Commitments</a>
+                <a href="index.html#privacy">Privacy</a>
+                <a href="index.html#terms">Terms</a>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 0.9rem;">© 2025 Pink Panther Technologies. All rights reserved.</p>
+            <p style="text-align: center; color: #666; font-size: 0.9rem;">Registered in England & Wales</p>
+        </div>
+    </footer>
+
+    </body>
+</html>
